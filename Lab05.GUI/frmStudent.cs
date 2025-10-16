@@ -112,6 +112,11 @@ namespace Lab05.GUI
             {
                 try
                 {
+                    if (picAvatar.Image != null)
+                    {
+                        picAvatar.Image.Dispose();
+                        picAvatar.Image = null;
+                    }
                     using (var avatarImage = Image.FromFile(avatarFilePath))
                     {
                         picAvatar.Image = new Bitmap(avatarImage);
@@ -230,10 +235,7 @@ namespace Lab05.GUI
                 if (row.Cells[2].Value != null)
                     cmbFaculty.Text = row.Cells[2].Value.ToString();
                 txtAverageScore.Text = row.Cells[3].Value?.ToString();
-                if (row.Cells[4].Value != null)
-                    LoadAvatar(row.Cells[0].Value.ToString());
-                else
-                    picAvatar.Image = null;
+                LoadAvatar(row.Cells[0].Value.ToString());
             }
         }
         private void btnOut_Click(object sender, EventArgs e)
